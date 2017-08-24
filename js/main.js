@@ -41,3 +41,33 @@ function saveBookmark(e){
     e.preventDefault();
   //  console.log(e);
 }
+
+// function to display the bookmarks on screen
+function fetchBookmarks() {
+        // get bookmarks from local torage
+        var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+
+        //get output id
+        var bookmarkResults = document.getElementById('bookmarksResults');
+
+      //display output
+
+      bookmarksResults.innerHTML ="";
+
+      for(var i=0;i<bookmarks.length;i++){
+        var name= bookmarks[i].name;
+        var url = bookmarks[i].url;
+
+        bookmarksResults.innerHTML += '<div class="well">'+
+                                        '<h3>'+name+
+                                        '<a class="btn btn-default" target="_blank" href="'+url+'">Visit</a>'+
+                                        '<a class="btn btn-danger" target="_blank" href="#">Delete</a>'+
+                                        '</h3>'+
+                                        '</div>';
+
+      }
+}
+
+window.onload = function(){
+    fetchBookmarks();
+}
